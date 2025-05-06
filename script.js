@@ -122,10 +122,11 @@ const firebaseConfig = {
  // Commandes robot
  const robotIP = "http://192.168.10.245";
 
- function sendCommand(cmd) {
-   fetch(`${robotIP}/move?direction=${cmd}`)
-     .then(res => console.log("Commande envoyée:", cmd))
-     .catch(err => console.error("Erreur:", err));
+ function sendCommand(direction) {
+  fetch('http://192.168.1.150/move?direction=' + direction)
+    .then(response => response.text())
+    .then(data => console.log("Réponse du robot :", data))
+    .catch(error => console.error("Erreur :", error));
  }
 
  document.getElementById('buttonA').addEventListener('click', () => sendCommand('a'));
